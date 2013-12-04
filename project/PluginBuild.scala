@@ -8,13 +8,7 @@ object PluginBuild extends Build {
 
   val appName = "liquibase-sbt-plugin"
 
-  lazy val rootDependencies = Seq("org.liquibase" % "liquibase-core" % "3.0.7")
-
-  lazy val root = Project(
-    appName,
-    file("."),
-    settings = defaultSettings ++ Seq(libraryDependencies ++= rootDependencies)
-  )
+  lazy val root = Project(appName, file("."), settings = defaultSettings)
 
   lazy val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := Organization,
