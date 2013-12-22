@@ -17,7 +17,11 @@ object PluginBuild extends Build {
     sbtPlugin := true,
     crossPaths := false,
     organizationName := "com.github.timothyklim",
-    organizationHomepage := Some(url("https://github.com/timothyklim/liquibase-sbt-plugin"))
+    organizationHomepage := Some(url("https://github.com/timothyklim/liquibase-sbt-plugin")),
+    libraryDependencies ++= Seq(
+      "org.liquibase" % "liquibase-core" % "3.0.7"
+    ),
+    publishTo := Some(Resolver.file("timothyklim.github.com", file(Path.userHome + "/Development/timothyklim.github.com/repo")))
   )
 
   lazy val defaultSettings = buildSettings ++ Seq(

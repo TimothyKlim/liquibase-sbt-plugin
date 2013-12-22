@@ -28,7 +28,6 @@ object LiquibasePlugin extends Plugin {
     val schemaName = SettingKey[String]("liquibase-schema-name")
     val catalog = SettingKey[String]("liquibase-catalog")
     val context = SettingKey[String]("liquibase-context")
-    val version = SettingKey[String]("liquibase-version")
 
   }
 
@@ -44,7 +43,6 @@ object LiquibasePlugin extends Plugin {
       schemaName := "",
       catalog := "",
       context := "",
-      version := "3.0.7",
       database <<= databaseTask,
       instance <<= instanceTask,
       status <<= statusTask,
@@ -52,11 +50,7 @@ object LiquibasePlugin extends Plugin {
     )
 
     def dependencies: Seq[Setting[_]] = Seq(
-      ivyConfigurations += Liquibase,
-      libraryDependencies <+= (version in Liquibase) {
-        version =>
-          "org.liquibase" % "liquibase-core" % version
-      }
+      ivyConfigurations += Liquibase
     )
 
     def databaseTask = (options, catalog, schemaName, fullClasspath in Runtime) map {
